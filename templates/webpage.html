@@ -1,0 +1,13 @@
+<body bgcolor="	#1DA1F2">
+<center><img src="{{url_for('static', filename='logo.png')}}" width="125" height="100" />
+    <div>
+        <form class = "grid" action="/result" method="POST">
+        <input type="text" id="linkinput" name="linkinput">
+        <button style="background-colour: white" class="file_submit">  Analyse </button>
+        </form>
+    </div>
+    {% if embed %}
+    {{embed|safe}}
+    {% endif %}
+    </center>
+</body>
