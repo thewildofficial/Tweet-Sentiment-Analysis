@@ -8,6 +8,35 @@
     </div>
     {% if embed %}
     {{embed|safe}}
+    <div style="width: 450px;
+    background-color: white;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 20px;
+    ">
     {% endif %}
+    {% if tweet_sentiment %}
+    <p style="color:black; font-size: 20px;font-family:Helvetica"> this tweet is 
+         {% if tweet_sentiment=="POSITIVE" %}
+         <h3 style="color:green"> POSITIVE</h3>
+         {% else %}
+         <H3 style="color:red"> NEGATIVE </H3>
+         {% endif %}
+         <p>
+    {% endif %}
+    </div>
+    {% if reply_sentiment %}
+    <div style="width: 450px;
+    background-color: white;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 20px;
+    ">
+    
+    <p style="color:black; font-size: 20px;font-family:Helvetica">
+        Replies are generally {{reply_sentiment}}.
+    </p>
+    </div>
+    {% endif  %}
     </center>
 </body>

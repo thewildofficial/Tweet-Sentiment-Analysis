@@ -74,7 +74,7 @@ def predict(vectoriser, model, text):
     # Predict the sentiment
     textdata = vectoriser.transform(preprocess(text))
     sentiment = model.predict(textdata)
-    return sentiment[0]
+    return sentiment
 
 def tweet_to_sentiment(tweet):
-    return predict(vectoriser,model,[tweet])
+    return predict(vectoriser,model,tweet)
