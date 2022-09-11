@@ -55,3 +55,9 @@ eagle.epf
 /venv
 /__pycache__
 /.ipynb_checkpoints
+/app-to-exe.py
+/app-to-exe.spec
+/build
+/dist/app-to-exe
+/dist - Shortcut.lnk
+/app.spec

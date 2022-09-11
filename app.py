@@ -1,3 +1,4 @@
+print("Loading Twitter Analysis bot..")
 from flask import Flask,render_template,request
 import tweepy
 import os
@@ -5,11 +6,16 @@ from dotenv import load_dotenv
 from pyembed.core import PyEmbed
 import backend
 import collections
+import sys
 
 load_dotenv()
 
-app = Flask(__name__)
-
+if getattr(sys, 'frozen', False):
+    template_folder = os.path.join(sys._MEIPASS, 'templates')
+    app = Flask(__name__, template_folder=template_folder)
+else:
+    app = Flask(__name__)
+ 
 BEARER_TOKEN = os.getenv("BEARER_TOKEN")
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
@@ -53,7 +59,12 @@ def result():
         for tweet in replies.data: replies_text.append(tweet.data["text"])
         reply_sentiment = backend.tweet_to_sentiment(replies_text)
         reply_frequency = dict(collections.Counter(reply_sentiment))
-        reply_sentiment = "POSITIVE" if max(reply_frequency["POSITIVE"],reply_frequency["NEGATIVE"]) == reply_frequency["POSITIVE"] else "NEGATIVE"
+        print(reply_frequency
+) 
+        if (max(reply_frequency["POSITIVE"],reply_frequency["NEGATIVE"]) == reply_frequency["POSITIVE"]):
+            reply_sentiment = "POSITIVE"
+        
+        else: reply_sentiment =  "NEGATIVE"
     
 
     return render_template("webpage.html",embed=embed,tweet_sentiment=tweet_sentiment, reply_sentiment = reply_sentiment)
